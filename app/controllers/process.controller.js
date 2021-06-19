@@ -1,13 +1,13 @@
 const db = require("../models");
-const Produto = db.produto;
+const Process = db.process;
 
 exports.create = (req, res) => {
-  if(!req.body.titulo || !req.body.descricao || !req.body.preco) {
+  if(!req.body.process || !req.body.value || !req.body.unitmensurement) {
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
   }
-  const produto = new Produto({...req.body})
-  produto.save(produto).then(data => {
+  const process = new Process({...req.body})
+  process.save(process).then(data => {
     res.send(data)
   }).catch(err => {
     res.status(500).send({
@@ -19,9 +19,9 @@ exports.create = (req, res) => {
     
 exports.findAll = (req, res) => {
   let condition = {};
-  Produto.find(condition).then(data => {
+  Process.find(condition).then(data => {
     res.send(data);
   }).catch(err => {
-    res.status(500).send({ msg: "Erro ao obter lista de produtos\nErro:" + err })
+    res.status(500).send({ msg: "Erro ao obter lista de processs\nErro:" + err })
   })
 }

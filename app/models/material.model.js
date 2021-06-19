@@ -3,12 +3,11 @@ module.exports = mongoose => {
     "material",
     mongoose.Schema(
       {
-        idarea : string,
-        idmaterial :string,
-        description : string,
-        price : number,
-        unitmensurement : string,
-        specificvalue : number
+        idprocess : String,
+        description : String,
+        price : Number,
+        unitmensurement : String,
+        specificvalue : Number
       },
       { timestamps: true }
     )

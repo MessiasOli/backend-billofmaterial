@@ -33,4 +33,5 @@ db.mongoose.connect( db.url, {
   process.exit();
 })
 
-require("./app/routes/produto.routes")(app)
+require("./app/routes/process.routes")(app)
+require("./app/routes/material.routes")(app)

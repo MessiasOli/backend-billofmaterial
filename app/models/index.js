@@ -5,7 +5,8 @@ mongoose.Promise = global.Promise;
 const db = {
   mongoose: mongoose,
   url: dbConfig.url,
-  produto: require("./produto.model.js")(mongoose)
+  process: require("./process.model.js")(mongoose),
+  material: require("./material.model.js")(mongoose)
 };
 
 module.exports = db;
