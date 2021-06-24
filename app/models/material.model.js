@@ -3,13 +3,15 @@ module.exports = mongoose => {
     "material",
     mongoose.Schema(
       {
+        idmaterial: String,
         idprocess : String,
         description : String,
         price : Number,
         unitmensurement : String,
         specificvalue : Number
       },
-      { timestamps: true }
+      { timestamps: true },
+      { _id : false }
     )
   );
   return Material;

@@ -5,8 +5,8 @@ module.exports = app => {
 
   router.post("/", ctrMatirial.create)
   router.get("/", ctrMatirial.findAll)
-  router.get("/:id", ctrMatirial.findById)
+  router.get("/:idprocess/:idmaterial", ctrMatirial.findById)
   router.put("/", ctrMatirial.update)
-  router.delete("/:id", ctrMatirial.delete)
+  router.delete("/:idprocess/:idmaterial", ctrMatirial.delete)
   app.use("/api/material", router);
 }

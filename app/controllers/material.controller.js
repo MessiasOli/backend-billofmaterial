@@ -58,12 +58,14 @@ let fullBody = (mat) => {
 }
 
 exports.findById = (req, res) => {
-  if(!req.params.id){
+  if(!req.params.idprocess && !req.params.idmaterial){
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
   }
 
-  Material.findById(req.params.id).then(data => {
+  let condition = { idprocess: req.params.idprocess ,idmaterial: req.params.idprocess }
+
+  Material.find(condition).then(data => {
     res.send(data)
   }).catch(err => {
     res.status(500).send({ msg: `Erro ao obter o Material de id: ${req.params.id} Erro: ${err}` })
@@ -71,12 +73,12 @@ exports.findById = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  if(!req.params.id){
+  if(!req.params.idprocess && !req.params.idmaterial){
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
   }
 
-  let condition = {_id: req.params.id};
+  let condition = { idprocess: req.params.idprocess ,idmaterial: req.params.idprocess }
 
   Material.deleteOne(condition).then(data => {
     if(data.n == 1){
