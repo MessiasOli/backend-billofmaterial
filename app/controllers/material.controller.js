@@ -17,7 +17,6 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  console.log('req.body :>> ', req.body);
   if(!fullBody(req.body)) {
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
@@ -49,7 +48,6 @@ exports.findAll = (req, res) => {
 }
 
 let fullBody = (mat) => {
-  console.log('mat :>> ', mat);
   if( !mat.idprocess ||
       !mat.description ||
       !mat.price == null ||
@@ -61,13 +59,14 @@ let fullBody = (mat) => {
 }
 
 exports.findById = (req, res) => {
-  if(!req.params.idprocess && !req.params.idmaterial){
+  if(req.params.idprocess == "" || req.params.idmaterial == ""){
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
   }
 
-  let condition = { idprocess: req.params.idprocess ,idmaterial: req.params.idprocess }
+  let condition = { idprocess: req.params.idprocess , idmaterial: req.params.idmaterial }
 
+  console.log('condition :>> ', condition);
   Material.find(condition).then(data => {
     res.send(data)
   }).catch(err => {
@@ -76,12 +75,12 @@ exports.findById = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  if(!req.params.idprocess && !req.params.idmaterial){
+  if(req.params.idprocess == "" || req.params.idmaterial == ""){
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
   }
 
-  let condition = { idprocess: req.params.idprocess ,idmaterial: req.params.idprocess }
+  let condition = { idprocess: req.params.idprocess.toString() ,idmaterial: req.params.idmaterial.toString() }
 
   Material.deleteOne(condition).then(data => {
     if(data.n == 1){
