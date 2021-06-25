@@ -10,8 +10,7 @@ module.exports = mongoose => {
         unitmensurement : String,
         specificvalue : Number
       },
-      { timestamps: true },
-      { _id : false }
+      { timestamps: true }
     )
   );
   return Material;

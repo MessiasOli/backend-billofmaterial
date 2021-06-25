@@ -17,11 +17,14 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
+  console.log('req.body :>> ', req.body);
   if(!fullBody(req.body)) {
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
   }
-  Material.updateOne({...req.body}).then(data => {
+
+  let filter = { idmaterial:  req.body.idmaterial, idprocess: req.body.idprocess }
+  Material.findOneAndUpdate(filter, {...req.body}).then(data => {
     if(data.n == 1){
       res.send("Material atualizado com sucesso!");
     }
