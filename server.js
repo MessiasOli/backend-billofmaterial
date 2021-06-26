@@ -3,7 +3,8 @@ const cors = require("cors");
 
 const app = express();
 var corsOptions = {
-  origin : "http://localhost:4200"
+  origin : "*",
+  optionsSuccessStatus: 200
 }
 
 // Ativa a configuração CORS
