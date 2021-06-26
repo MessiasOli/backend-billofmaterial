@@ -24,7 +24,7 @@ exports.update = (req, res) => {
 
   let filter = { idmaterial:  req.body.idmaterial, idprocess: req.body.idprocess }
   Material.findOneAndUpdate(filter, {...req.body}).then(data => {
-    if(data.n == 1){
+    if(data && data.n == 1){
       res.send("Material atualizado com sucesso!");
     }
     else
