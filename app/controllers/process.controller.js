@@ -21,8 +21,11 @@ exports.update = (req, res) => {
     res.status(400).send({ msg: "Requisição incompleta: dados ausentes" })
     return;
   }
-  Process.updateOne({...req.body}).then(data => {
-    if(data.n == 1){
+
+  let filter = { id: req.body.id }
+  Process.findOneAndUpdate(filter, {...req.body}).then(data => {
+    console.log('data :>> ', data);
+    if(data){
       res.send("Processo atualizado com sucesso!");
     }
     else
@@ -51,7 +54,7 @@ exports.findById = (req, res) => {
     return;
   }
 
-  Process.findById(req.params.id).then(data => {
+  Process.find({ id: req.params.id }).then(data => {
     res.send(data)
   }).catch(err => {
     res.status(500).send({ msg: `Erro ao obter o processo de id: ${req.params.id} Erro: ${err}` })
@@ -64,9 +67,11 @@ exports.delete = (req, res) => {
     return;
   }
 
-  let condition = {_id: req.params.id};
+  let condition = {id: req.params.id};
 
+  console.log('id :>> ', condition);
   Process.deleteOne(condition).then(data => {
+    console.log('data :>> ', data);
     if(data.n == 1){
       res.send("Processo deletado com sucesso!")
     }

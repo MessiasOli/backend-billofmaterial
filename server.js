@@ -28,7 +28,7 @@ db.mongoose.connect( db.url, {
   useNewUrlParser: true, 
   useUnifiedTopology: true 
 }).then(()=>{
-  console.log("Conectando ao banco de dados");
+  console.log("Banco de dados conectado!");
 }).catch(err => {
   console.log("Não foi possível conectar ao banco de dados", err)
   process.exit();

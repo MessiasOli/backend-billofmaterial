@@ -3,6 +3,7 @@ module.exports = mongoose => {
     "process",
     mongoose.Schema(
       {
+        id: String,
         process: String,
         value: Number,
         unitmensurement: String

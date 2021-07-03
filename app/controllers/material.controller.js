@@ -81,8 +81,9 @@ exports.delete = (req, res) => {
   }
 
   let condition = { idprocess: req.params.idprocess.toString() ,idmaterial: req.params.idmaterial.toString() }
-
+  console.log('condition :>> ', condition);
   Material.deleteOne(condition).then(data => {
+    console.log('data :>> ', data);
     if(data.n == 1){
       res.send("Material deletado com sucesso!")
     }
