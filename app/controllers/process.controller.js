@@ -24,7 +24,6 @@ exports.update = (req, res) => {
 
   let filter = { id: req.body.id }
   Process.findOneAndUpdate(filter, {...req.body}).then(data => {
-    console.log('data :>> ', data);
     if(data){
       res.send("Processo atualizado com sucesso!");
     }
@@ -69,9 +68,7 @@ exports.delete = (req, res) => {
 
   let condition = {id: req.params.id};
 
-  console.log('id :>> ', condition);
   Process.deleteOne(condition).then(data => {
-    console.log('data :>> ', data);
     if(data.n == 1){
       res.send("Processo deletado com sucesso!")
     }

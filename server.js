@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.json({server: `Servidor iniciado!`})
+  res.json({server: `Servidor Rodando!`})
 });
 
 const PORT = process.env.PORT || 8080;
@@ -36,3 +36,4 @@ db.mongoose.connect( db.url, {
 
 require("./app/routes/process.routes")(app)
 require("./app/routes/material.routes")(app)
+require("./app/routes/default.routes")(app)
